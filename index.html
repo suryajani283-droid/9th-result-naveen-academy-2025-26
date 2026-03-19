@@ -1,152 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naveen Academy - Student Portal</title>
-    <style>
-        :root {
-            --primary: #1e3c72;
-            --secondary: #2a5298;
-            --accent: #ff9800;
-            --success: #2e7d32;
-        }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh;
-        }
-        .container { 
-            background: white; width: 100%; max-width: 450px; padding: 40px; border-radius: 20px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3); text-align: center; 
-        }
-        .logo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid #f0f0f0; margin-bottom: 15px; }
-        h1 { color: var(--primary); font-size: 24px; margin: 5px 0; text-transform: uppercase; }
-        h2 { color: #666; font-size: 16px; margin-bottom: 25px; }
-        
-        .form-group { text-align: left; margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-weight: 600; color: #444; }
-        input { 
-            width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 10px; 
-            font-size: 16px; transition: 0.3s; box-sizing: border-box;
-        }
-        input:focus { border-color: var(--primary); outline: none; }
-        
-        .login-btn { 
-            width: 100%; padding: 14px; background: var(--accent); color: white; border: none; 
-            border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s;
-        }
-        .login-btn:hover { background: #e68900; transform: translateY(-2px); }
-
-        #resultArea { display: none; background: white; width: 95%; max-width: 700px; padding: 30px; border-radius: 15px; margin: 20px auto; }
-        .marksheet-header { border-bottom: 3px double var(--primary); padding-bottom: 10px; margin-bottom: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background: #f4f4f4; color: var(--primary); }
-        .footer-info { display: flex; justify-content: space-between; margin-top: 20px; font-size: 18px; font-weight: bold; }
-        .status-tag { display: inline-block; margin-top: 15px; padding: 8px 20px; border-radius: 5px; color: white; font-weight: bold; }
-        .print-btn { background: var(--success); margin-top: 20px; }
-
-        @media print {
-            body { background: white; padding: 0; }
-            .container, .login-btn, .print-btn { display: none !important; }
-            #resultArea { display: block !important; box-shadow: none; width: 100%; border: none; }
-        }
-    </style>
+    <title>NAVEEN ACADEMY - Class 9 Result</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<div class="container" id="loginBox">
-    <img src="https://suryajani28-cejdx.wordpress.com/wp-content/uploads/2026/03/img-20251031-wa0016.jpg" alt="School Logo" class="logo">
-    <h1>Naveen Academy</h1>
-    <h2>Sr. Sec. School, Chohtan</h2>
-    <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;">
-    
-    <div class="form-group">
-        <label>Roll Number</label>
-        <input type="number" id="rollInput" placeholder="Enter your roll no.">
-    </div>
-    <div class="form-group">
-        <label>Date of Birth</label>
-        <input type="text" id="dobInput" placeholder="DD/MM/YYYY">
-    </div>
-    
-    <button class="login-btn" onclick="verifyLogin()">View Result</button>
-</div>
-
-<div id="resultArea">
-    <div class="marksheet-header">
-        <h2 style="margin:0; color:var(--primary);">NAVEEN ACADEMY SR. SEC. SCHOOL</h2>
-        <p style="margin:5px 0;">Chohtan (Barmer) | Annual Exam Result 2025-26</p>
-    </div>
-    
-    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-        <div>
-            <strong>Student Name:</strong> <span id="sName"></span><br>
-            <strong>Father's Name:</strong> <span id="fName"></span>
+    <div class="container">
+        <div id="login-card" class="card">
+            <img src="https://suryajani28-cejdx.wordpress.com/wp-content/uploads/2026/03/img-20251031-wa0016.jpg" alt="School Logo" class="logo">
+            <h2>नवीन एकेडमी उच्च माध्यमिक विद्यालय</h2>
+            <h3>वार्षिक परीक्षा परिणाम - कक्षा 9</h3>
+            <div class="input-group">
+                <label>रोल नंबर (Roll Number)</label>
+                <input type="text" id="roll-no" placeholder="901">
+            </div>
+            <div class="input-group">
+                <label>जन्म तिथि (Date of Birth)</label>
+                <input type="text" id="dob" placeholder="DD-MM-YYYY">
+                <small>Format: 17-01-2011</small>
+            </div>
+            <button id="view-result-btn" onclick="checkResult()">परिणाम देखें</button>
+            <p id="error-msg" class="error"></p>
         </div>
-        <div style="text-align: right;">
-            <strong>Roll No:</strong> <span id="sRoll"></span><br>
-            <strong>Class:</strong> 9th
+
+        <div id="result-card" class="card hidden">
+            <div class="header-result">
+                <img src="https://suryajani28-cejdx.wordpress.com/wp-content/uploads/2026/03/img-20251031-wa0016.jpg" alt="Logo" class="logo-small">
+                <h4>नवीन एकेडमी उच्च माध्यमिक विद्यालय, चौहटन</h4>
+            </div>
+            <hr>
+            <div class="student-info">
+                <p><strong>नाम:</strong> <span id="res-name"></span></p>
+                <p><strong>पिता का नाम:</strong> <span id="res-father"></span></p>
+                <p><strong>रोल नंबर:</strong> <span id="res-roll"></span></p>
+            </div>
+            <table class="result-table">
+                <thead>
+                    <tr><th>विषय</th><th>अंक (200 में से)</th></tr>
+                </thead>
+                <tbody id="marks-body"></tbody>
+            </table>
+            <div class="summary">
+                <p><strong>कुल प्राप्तांक:</strong> <span id="res-total"></span> / 1200</p>
+                <p><strong>प्रतिशत:</strong> <span id="res-percentage"></span></p>
+                <p><strong>परिणाम:</strong> <span id="res-status"></span></p>
+                <p><strong>कक्षा में स्थान:</strong> <span id="res-rank"></span></p>
+            </div>
+            <button class="btn-back" onclick="goBack()">वापस जाएं</button>
+            <button class="btn-print" onclick="window.print()">प्रिंट करें</button>
         </div>
     </div>
-
-    <table>
-        <thead><tr><th>Subject Name</th><th>Total Marks</th></tr></thead>
-        <tbody id="marksTable"></tbody>
-    </table>
-
-    <div class="footer-info">
-        <span>Grand Total: <span id="sTotal"></span></span>
-        <span>Percentage: <span id="sPercent"></span></span>
-    </div>
-
-    <div style="text-align: center;">
-        <div id="sStatus" class="status-tag"></div><br>
-        <button class="login-btn print-btn" onclick="window.print()">Download / Print Result</button>
-        <button class="login-btn" style="background:#666; margin-top:10px; width: auto;" onclick="location.reload()">Back to Login</button>
-    </div>
-</div>
-
-<script>
-    async function verifyLogin() {
-        const roll = document.getElementById('rollInput').value;
-        const dob = document.getElementById('dobInput').value.trim();
-        
-        try {
-            const response = await fetch('data.json');
-            const students = await response.json();
-            
-            const student = students.find(s => s.roll_no == roll && s.dob == dob);
-            
-            if (student) {
-                document.getElementById('loginBox').style.display = 'none';
-                document.body.style.background = "#f0f2f5";
-                document.getElementById('resultArea').style.display = 'block';
-                
-                document.getElementById('sName').innerText = student.name;
-                document.getElementById('fName').innerText = student.father;
-                document.getElementById('sRoll').innerText = student.roll_no;
-                document.getElementById('sTotal').innerText = student.total;
-                document.getElementById('sPercent').innerText = student.percent;
-                
-                const statusTag = document.getElementById('sStatus');
-                statusTag.innerText = "RESULT: " + student.result;
-                statusTag.style.background = student.result.includes("PASS") ? "#2e7d32" : "#d32f2f";
-
-                let rows = "";
-                for (let sub in student.marks) {
-                    rows += `<tr><td>${sub}</td><td>${student.marks[sub]}</td></tr>`;
-                }
-                document.getElementById('marksTable').innerHTML = rows;
-            } else {
-                alert("Incorrect Roll Number or DOB!\nPlease enter DOB as DD/MM/YYYY (e.g., 15/08/2010)");
-            }
-        } catch (err) {
-            alert("Error loading data. Please check if data.json is uploaded.");
-        }
-    }
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
