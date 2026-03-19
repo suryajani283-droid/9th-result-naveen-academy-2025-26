@@ -4,7 +4,14 @@ let studentsData = [];
 fetch('results.json')
     .then(response => response.json())
     .then(data => {
-        studentsData = data;
+        // रैंकिंग को ऑटोमेट करने के लिए डेटा को सॉर्ट करें
+        // सबसे ज्यादा नंबर वाले को पहले रखें
+        studentsData = data.sort((a, b) => parseInt(b.total) - parseInt(a.total));
+        
+        // प्रत्येक छात्र को उसकी गणना की गई रैंक असाइन करें
+        studentsData.forEach((student, index) => {
+            student.calculatedRank = (index + 1);
+        });
     });
 
 function checkResult() {
@@ -40,14 +47,14 @@ function showResult(s) {
         <tr><td>सामाजिक विज्ञान</td><td>${s.social_science}</td></tr>
     `;
 
+    // यहां s.rank की जगह s.calculatedRank का उपयोग किया गया है
     document.getElementById('res-total').innerText = s.total;
     document.getElementById('res-percentage').innerText = s.percentage;
     document.getElementById('res-status').innerText = s.result;
-    document.getElementById('res-rank').innerText = s.rank;
+    document.getElementById('res-rank').innerText = s.calculatedRank + " (मेरिट सूची के अनुसार)";
 }
 
 function goBack() {
     document.getElementById('login-card').classList.remove('hidden');
     document.getElementById('result-card').classList.add('hidden');
 }
-
