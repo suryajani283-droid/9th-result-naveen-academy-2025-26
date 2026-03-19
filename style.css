@@ -1,0 +1,52 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+.container { width: 90%; max-width: 500px; }
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+}
+.hidden { display: none; }
+.logo { width: 100px; margin-bottom: 15px; }
+.logo-small { width: 50px; }
+h2 { color: #4a148c; margin: 0; font-size: 1.5rem; }
+h3 { color: #7b1fa2; margin-top: 5px; }
+.input-group { text-align: left; margin-top: 15px; }
+label { display: block; font-weight: 600; margin-bottom: 5px; }
+input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    background: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+button:hover { background: #f50057; }
+.error { color: red; font-size: 0.9rem; margin-top: 10px; }
+.result-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+.result-table th, .result-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+.result-table th { background: #f3e5f5; }
+.student-info { text-align: left; margin-bottom: 20px; background: #fafafa; padding: 10px; border-radius: 8px; }
+.summary { background: #e3f2fd; padding: 15px; border-radius: 8px; text-align: left; font-size: 1.1rem; }
+.btn-back { background: #757575; margin-bottom: 10px; }
+@media print { .btn-back, #view-result-btn, .btn-print { display: none; } }
