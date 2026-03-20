@@ -4,100 +4,299 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>नवीन एकेडमी - परीक्षा परिणाम 2026</title>
+    
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #003366;
+            --accent: #ed1c24;
+            --bg: #f5f7fa;
+            --text: #1a202c;
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+        /* --- Header (Compact Style) --- */
+        .top-nav { 
+            background: var(--white); 
+            padding: 10px 20px; 
+            border-bottom: 2px solid var(--primary); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+        }
+        .nav-wrapper { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .brand { display: flex; align-items: center; gap: 12px; }
+        .nav-logo { height: 45px; width: auto; border-radius: 4px; }
+        .brand-info h1 { font-size: 1.15rem; color: var(--primary); font-weight: 800; margin: 0; }
+        .brand-info span { font-size: 0.75rem; color: #718096; display: block; }
+        .badge { background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; }
+
+        /* --- Main Content Area --- */
+        .content-area { display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 100px); padding: 20px; }
+
+        /* --- Login Card (Modern Sleek) --- */
+        .glass-card { 
+            background: var(--white); 
+            width: 100%; 
+            max-width: 400px; 
+            padding: 35px; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08); 
+            border: 1px solid var(--border); 
+        }
+        .card-head { text-align: center; margin-bottom: 30px; }
+        .card-head h2 { font-size: 1.4rem; color: var(--primary); margin-bottom: 8px; font-weight: 800; }
+        .card-head p { font-size: 0.85rem; color: #718096; }
+
+        .input-box { margin-bottom: 20px; text-align: left; }
+        .input-box label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: #4a5568; }
+        .input-box input { 
+            width: 100%; 
+            padding: 14px; 
+            border: 2px solid #edf2f7; 
+            border-radius: 12px; 
+            font-size: 1rem; 
+            transition: 0.3s; 
+            font-family: inherit; 
+        }
+        .input-box input:focus { border-color: var(--primary); outline: none; background: #f8fafc; }
+        .hint { color: #a0aec0; font-size: 0.75rem; margin-top: 5px; display: block; }
+
+        .primary-btn { 
+            width: 100%; 
+            padding: 16px; 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            font-size: 1rem; 
+            margin-top: 10px;
+        }
+        .primary-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,51,102,0.2); }
+
+        /* --- Result View --- */
+        .result-box { width: 100%; max-width: 850px; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #ddd; }
+        .marksheet { padding: 30px; }
+        .marksheet-top { margin-bottom: 25px; border-bottom: 2px solid var(--bg); padding-bottom: 15px; text-align: center; }
+        .marksheet-top h3 { color: var(--primary); text-decoration: underline; margin-bottom: 15px; }
+        
+        .st-info-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 10px; 
+            background: #f8fafc; 
+            padding: 15px; 
+            border-radius: 10px; 
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 0.9rem; }
+        th { text-align: left; padding: 12px; background: #f1f5f9; color: var(--primary); border: 1px solid #e2e8f0; }
+        td { padding: 12px; border: 1px solid #e2e8f0; font-weight: 500; }
+
+        .result-footer { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
+        .stat-card { background: #f1f5f9; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #e2e8f0; }
+        .stat-card small { font-size: 0.7rem; text-transform: uppercase; color: #718096; font-weight: 700; }
+        .stat-card h4 { font-size: 1.1rem; color: var(--primary); margin-top: 5px; }
+
+        .print-tools { display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid #eee; padding-top: 20px; }
+        .print-btn { background: #38a169; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .back-btn { background: #718096; color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; }
+
+        .hidden { display: none; }
+        .err-text { color: var(--accent); font-size: 0.85rem; text-align: center; margin-top: 15px; font-weight: 600; }
+        
+        footer { text-align: center; padding: 20px; color: #a0aec0; font-size: 0.8rem; }
+
+        @media print {
+            .top-nav, .print-tools, footer { display: none !important; }
+            body { background: white; }
+            .content-area { padding: 0; }
+            .result-box { box-shadow: none; border: 1px solid #000; width: 100%; max-width: 100%; }
+        }
+    </style>
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="nav-content">
-            <div class="brand-box">
-                <img src="https://suryajani28-cejdx.wordpress.com/wp-content/uploads/2026/03/img-20251031-wa0016.jpg" alt="Logo" class="mini-logo">
-                <div class="brand-titles">
+    <header class="top-nav">
+        <div class="nav-wrapper">
+            <div class="brand">
+                <img src="https://suryajani28-cejdx.wordpress.com/wp-content/uploads/2026/03/img-20251031-wa0016.jpg" alt="Logo" class="nav-logo">
+                <div class="brand-info">
                     <h1>नवीन एकेडमी उच्च माध्यमिक विद्यालय</h1>
-                    <span>चौहटन, बाड़मेर (राज.)</span>
+                    <span>चौहटन, बाड़मेर (राजस्थान)</span>
                 </div>
             </div>
-            <div class="nav-status">Online Portal 2026</div>
+            <div class="nav-right">
+                <span class="badge">वार्षिक परिणाम 2026</span>
+            </div>
         </div>
     </header>
 
-    <div class="main-wrapper">
-        <div id="login-card" class="auth-card">
-            <div class="auth-header">
-                <h2>Examination Result Login</h2>
-                <p>कृपया रोल नंबर और जन्म तिथि भरें</p>
+    <main class="content-area">
+        <div id="login-card" class="glass-card">
+            <div class="card-head">
+                <h2>Result Login</h2>
+                <p>अपना विवरण सही-सही भरें</p>
             </div>
             
-            <div class="auth-body">
-                <div class="input-field">
+            <div class="card-body">
+                <div class="input-box">
                     <label>रोल नंबर (Roll Number)</label>
-                    <input type="text" id="roll-no" placeholder="901">
+                    <input type="number" id="roll-no" placeholder="उदाहरण: 901">
                 </div>
                 
-                <div class="input-field">
+                <div class="input-box">
                     <label>जन्म तिथि (DOB)</label>
                     <input type="text" id="dob" placeholder="DD-MM-YYYY">
-                    <span class="hint">Format: 12-10-2010</span>
+                    <small class="hint">प्रारूप: 12-10-2010</small>
                 </div>
 
-                <button class="btn-primary" onclick="checkResult()">परिणाम देखें</button>
-                <p id="error-msg" class="error-msg"></p>
+                <button class="primary-btn" onclick="checkResult()">परिणाम देखें</button>
+                <p id="error-msg" class="err-text"></p>
             </div>
         </div>
 
-        <div id="result-card" class="result-container hidden">
-            <div class="result-sheet">
-                <div class="sheet-title">
+        <div id="result-card" class="result-box hidden">
+            <div class="marksheet">
+                <div class="marksheet-top">
                     <h3>अंकतालिका (PROVISIONAL MARKSHEET)</h3>
-                </div>
-                
-                <div class="student-meta">
-                    <div class="meta-row"><span>Name:</span> <strong id="res-name"></strong></div>
-                    <div class="meta-row"><span>Father's Name:</span> <strong id="res-father"></strong></div>
-                    <div class="meta-row"><span>Roll No:</span> <strong id="res-roll"></strong></div>
+                    <div class="st-info-grid">
+                        <p><strong>नाम:</strong> <span id="res-name"></span></p>
+                        <p><strong>पिता का नाम:</strong> <span id="res-father"></span></p>
+                        <p><strong>रोल नंबर:</strong> <span id="res-roll"></span></p>
+                    </div>
                 </div>
 
-                <table class="marks-grid">
+                <table>
                     <thead>
                         <tr>
                             <th>विषय (Subject)</th>
-                            <th>पूर्णांक</th>
-                            <th>प्राप्तांक</th>
+                            <th>पूर्णांक (Max)</th>
+                            <th>प्राप्तांक (Obtained)</th>
                         </tr>
                     </thead>
                     <tbody id="marks-body"></tbody>
                     <tfoot>
-                        <tr>
+                        <tr style="background:#f8fafc; font-weight:800;">
                             <td>कुल योग (Grand Total)</td>
                             <td>1200</td>
-                            <td id="res-total" class="bold-text"></td>
+                            <td id="res-total"></td>
                         </tr>
                     </tfoot>
                 </table>
 
-                <div class="result-stats">
-                    <div class="stat-item">Percentage: <span id="res-percentage"></span></div>
-                    <div class="stat-item">Result: <span id="res-status"></span></div>
-                    <div class="stat-item">Class Rank: <span id="res-rank"></span></div>
+                <div class="result-footer">
+                    <div class="stat-card">
+                        <small>प्रतिशत (%)</small>
+                        <h4 id="res-percentage"></h4>
+                    </div>
+                    <div class="stat-card">
+                        <small>परिणाम स्थिति</small>
+                        <h4 id="res-status"></h4>
+                    </div>
+                    <div class="stat-card">
+                        <small>कक्षा रैंक</small>
+                        <h4 id="res-rank"></h4>
+                    </div>
                 </div>
 
-                <div class="print-actions">
-                    <button class="btn-sec" onclick="goBack()">वापस जाएं</button>
-                    <button class="btn-print" onclick="window.print()">डाउनलोड करें</button>
+                <div class="print-tools">
+                    <button class="back-btn" onclick="goBack()">वापस जाएं</button>
+                    <button class="print-btn" onclick="window.print()">डाउनलोड / प्रिंट</button>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <footer class="site-footer">
-        <p>© 2026 नवीन एकेडमी | तकनीकी सहायता: सुरेश ज्याणी</p>
+    <footer>
+        © 2026 नवीन एकेडमी चौहटन | तकनीकी सहयोग: सुरेश ज्याणी
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        let studentsData = [];
+
+        // --- डेटा लोड करने का फंक्शन (Auto-Refresh Logic के साथ) ---
+        async function loadLatestData() {
+            try {
+                // 'v=' पैरामीटर ब्राउज़र को हर बार फाइल दोबारा डाउनलोड करने पर मजबूर करता है
+                const v = new Date().getTime();
+                const response = await fetch(`results.json?v=${v}`);
+                const data = await response.json();
+                
+                studentsData = data.map(s => {
+                    const total = parseInt(s.hindi) + parseInt(s.english) + parseInt(s.sanskrit) + 
+                                  parseInt(s.math) + parseInt(s.science) + parseInt(s.social_science);
+                    return {
+                        ...s,
+                        total: total,
+                        perc: ((total / 1200) * 100).toFixed(2) + "%"
+                    };
+                });
+
+                // ऑटो-रैंक गणना
+                studentsData.sort((a, b) => b.total - a.total);
+                studentsData.forEach((s, idx) => s.rank = idx + 1);
+                console.log("Latest student data synced.");
+            } catch (e) {
+                console.error("Error loading JSON file:", e);
+            }
+        }
+
+        function checkResult() {
+            const rollInput = document.getElementById('roll-no').value.trim();
+            const dobInput = document.getElementById('dob').value.trim();
+            const errorElement = document.getElementById('error-msg');
+
+            const student = studentsData.find(s => s.roll_no == rollInput && s.dob == dobInput);
+
+            if (student) {
+                errorElement.innerText = "";
+                document.getElementById('login-card').classList.add('hidden');
+                document.getElementById('result-card').classList.remove('hidden');
+
+                document.getElementById('res-name').innerText = student.name;
+                document.getElementById('res-father').innerText = student.father_name;
+                document.getElementById('res-roll').innerText = student.roll_no;
+                document.getElementById('res-total').innerText = student.total;
+                document.getElementById('res-percentage').innerText = student.perc;
+                document.getElementById('res-status').innerText = student.total >= 396 ? "PASS" : "FAIL";
+                document.getElementById('res-rank').innerText = "#" + student.rank;
+
+                document.getElementById('marks-body').innerHTML = `
+                    <tr><td>हिन्दी (Hindi)</td><td>200</td><td>${student.hindi}</td></tr>
+                    <tr><td>अंग्रेजी (English)</td><td>200</td><td>${student.english}</td></tr>
+                    <tr><td>संस्कृत (Sanskrit)</td><td>200</td><td>${student.sanskrit}</td></tr>
+                    <tr><td>गणित (Mathematics)</td><td>200</td><td>${student.math}</td></tr>
+                    <tr><td>विज्ञान (Science)</td><td>200</td><td>${student.science}</td></tr>
+                    <tr><td>सामाजिक विज्ञान (Soc. Science)</td><td>200</td><td>${student.social_science}</td></tr>
+                `;
+            } else {
+                errorElement.innerText = "गलत रोल नंबर या जन्म तिथि! कृपया पुनः प्रयास करें।";
+            }
+        }
+
+        function goBack() {
+            document.getElementById('login-card').classList.remove('hidden');
+            document.getElementById('result-card').classList.add('hidden');
+        }
+
+        // पेज लोड होते ही डेटा सिंक करें
+        loadLatestData();
+    </script>
 </body>
 </html>
