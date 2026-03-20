@@ -3,84 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NAVEEN ACADEMY - Online Result Portal</title>
+    <title>Naveen Academy | Class 9 Result</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="https://suryajani28-cejdx.wordpress.com/wp-content/uploads/2026/03/img-20251031-wa0016.jpg" alt="Logo">
-                <span>नवीन एकेडमी</span>
+    <div class="top-bar"></div>
+
+    <header class="main-header">
+        <div class="header-content">
+            <img src="https://suryajani28-cejdx.wordpress.com/wp-content/uploads/2026/03/img-20251031-wa0016.jpg" alt="School Logo" class="school-logo">
+            <div class="school-name">
+                <h1>नवीन एकेडमी उच्च माध्यमिक विद्यालय</h1>
+                <p>चौहटन, बाड़मेर (राजस्थान)</p>
             </div>
-            <nav class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Exam</a>
-                <a href="#">Contact</a>
-            </nav>
         </div>
     </header>
 
-    <div class="container">
-        <div id="login-card" class="card">
-            <div class="card-header">
-                <img src="https://suryajani28-cejdx.wordpress.com/wp-content/uploads/2026/03/img-20251031-wa0016.jpg" alt="School Logo" class="logo">
-                <h2>नवीन एकेडमी उच्च माध्यमिक विद्यालय</h2>
-                <p>चौहटन (बाड़मेर)</p>
-            </div>
-            
-            <div class="portal-badge">कक्षा 9 - वार्षिक परीक्षा परिणाम 2026</div>
+    <nav class="sub-nav">
+        <div class="nav-links">
+            <a href="#">होम</a>
+            <a href="#" class="active">परीक्षा परिणाम</a>
+            <a href="#">दिशा-निर्देश</a>
+            <a href="#">संपर्क करें</a>
+        </div>
+    </nav>
 
-            <div class="input-group">
-                <label>रोल नंबर (Roll Number)</label>
-                <input type="text" id="roll-no" placeholder="उदाहरण: 901">
-            </div>
-            <div class="input-group">
-                <label>जन्म तिथि (Date of Birth)</label>
-                <input type="text" id="dob" placeholder="DD-MM-YYYY">
-                <small>प्रारूप: 17-01-2011</small>
+    <div class="main-container">
+        <div id="login-card" class="login-box">
+            <div class="box-title">वार्षिक परीक्षा परिणाम - 2026</div>
+            
+            <div class="login-body">
+                <div class="input-field">
+                    <label>रोल नंबर प्रविष्ट करें (Enter Roll No.)</label>
+                    <input type="text" id="roll-no" placeholder="e.g. 901">
+                </div>
+                
+                <div class="input-field">
+                    <label>जन्म तिथि (Enter DOB)</label>
+                    <input type="text" id="dob" placeholder="DD-MM-YYYY">
+                    <span class="hint">Format: 15-05-2012</span>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-submit" onclick="checkResult()">परिणाम देखें</button>
+                    <button class="btn-reset" onclick="location.reload()">रीसेट करें</button>
+                </div>
+                <p id="error-msg" class="error-text"></p>
             </div>
             
-            <button id="view-result-btn" onclick="checkResult()">परिणाम खोजें</button>
-            <p id="error-msg" class="error"></p>
-            
-            <div class="card-footer">
-                <p>© 2026 नवीन एकेडमी - तकनीकी सहायता: सुरेश ज्याणी</p>
+            <div class="notice">
+                नोट: यदि परिणाम देखने में समस्या हो रही है, तो विद्यालय कार्यालय से संपर्क करें।
             </div>
         </div>
 
-        <div id="result-card" class="card hidden">
-            <div class="header-result">
-                <img src="https://suryajani28-cejdx.wordpress.com/wp-content/uploads/2026/03/img-20251031-wa0016.jpg" alt="Logo" class="logo-small">
-                <h4>नवीन एकेडमी उच्च माध्यमिक विद्यालय, चौहटन</h4>
+        <div id="result-card" class="result-display hidden">
+            <div class="result-header">
+                <h3>विद्यार्थी का अंकतालिका (Mark Sheet)</h3>
+                <button class="btn-print-mini" onclick="window.print()">प्रिंट करें</button>
             </div>
-            <hr>
-            <div class="student-info">
-                <p><strong>नाम:</strong> <span id="res-name"></span></p>
-                <p><strong>पिता का नाम:</strong> <span id="res-father"></span></p>
-                <p><strong>रोल नंबर:</strong> <span id="res-roll"></span></p>
+            
+            <div class="student-details">
+                <div class="detail-row"><span>विद्यार्थी का नाम:</span> <strong id="res-name"></strong></div>
+                <div class="detail-row"><span>पिता का नाम:</span> <strong id="res-father"></strong></div>
+                <div class="detail-row"><span>रोल नंबर:</span> <strong id="res-roll"></strong></div>
             </div>
-            <table class="result-table">
+
+            <table class="marks-table">
                 <thead>
-                    <tr><th>विषय</th><th>अंक (200 में से)</th></tr>
+                    <tr>
+                        <th>विषय (Subject)</th>
+                        <th>अधिकतम अंक</th>
+                        <th>प्राप्तांक</th>
+                    </tr>
                 </thead>
                 <tbody id="marks-body"></tbody>
             </table>
-            <div class="summary">
-                <p><strong>कुल प्राप्तांक:</strong> <span id="res-total"></span> / 1200</p>
-                <p><strong>प्रतिशत:</strong> <span id="res-percentage"></span></p>
-                <p><strong>परिणाम:</strong> <span id="res-status"></span></p>
-                <p><strong>कक्षा में स्थान:</strong> <span id="res-rank"></span></p>
+
+            <div class="final-summary">
+                <div class="stat"><span>कुल अंक:</span> <b id="res-total"></b></div>
+                <div class="stat"><span>प्रतिशत:</span> <b id="res-percentage"></b></div>
+                <div class="stat"><span>परिणाम:</span> <b id="res-status"></b></div>
+                <div class="stat"><span>रैंक:</span> <b id="res-rank"></b></div>
             </div>
-            <div class="no-print" style="margin-top: 20px;">
-                <button class="btn-back" onclick="goBack()">वापस जाएं</button>
-                <button class="btn-print" onclick="window.print()">परिणाम प्रिंट करें</button>
-            </div>
+
+            <button class="btn-back" onclick="goBack()">मुख्य पृष्ठ पर जाएं</button>
         </div>
     </div>
+
+    <footer class="site-footer">
+        <p>© 2026 नवीन एकेडमी चौहटन | Developed by Suresh Jyani</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
