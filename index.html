@@ -3,97 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naveen Academy | Class 9 Result</title>
+    <title>नवीन एकेडमी - परीक्षा परिणाम 2026</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="top-bar"></div>
+    <div class="header-strip"></div>
 
-    <header class="main-header">
-        <div class="header-content">
-            <img src="https://suryajani28-cejdx.wordpress.com/wp-content/uploads/2026/03/img-20251031-wa0016.jpg" alt="School Logo" class="school-logo">
-            <div class="school-name">
+    <header class="site-header">
+        <div class="header-inner">
+            <img src="https://suryajani28-cejdx.wordpress.com/wp-content/uploads/2026/03/img-20251031-wa0016.jpg" alt="Logo" class="main-logo">
+            <div class="brand-text">
                 <h1>नवीन एकेडमी उच्च माध्यमिक विद्यालय</h1>
-                <p>चौहटन, बाड़मेर (राजस्थान)</p>
+                <p>चौहटन, बाड़मेर (राजस्थान) - 344031</p>
+                <span class="portal-name">Online Examination Portal</span>
             </div>
         </div>
     </header>
 
-    <nav class="sub-nav">
-        <div class="nav-links">
-            <a href="#">होम</a>
-            <a href="#" class="active">परीक्षा परिणाम</a>
-            <a href="#">दिशा-निर्देश</a>
-            <a href="#">संपर्क करें</a>
-        </div>
-    </nav>
+    <div class="notice-bar">
+        <marquee behavior="scroll" direction="left">सूचना: कक्षा 9वीं का वार्षिक परीक्षा परिणाम घोषित कर दिया गया है। कृपया अपना रोल नंबर और जन्म तिथि सही प्रविष्ट करें।</marquee>
+    </div>
 
-    <div class="main-container">
-        <div id="login-card" class="login-box">
-            <div class="box-title">वार्षिक परीक्षा परिणाम - 2026</div>
-            
-            <div class="login-body">
-                <div class="input-field">
-                    <label>रोल नंबर प्रविष्ट करें (Enter Roll No.)</label>
-                    <input type="text" id="roll-no" placeholder="e.g. 901">
+    <div class="container">
+        <div id="login-card" class="login-container">
+            <div class="panel-heading">Examination Results - 2025-26</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>रोल नंबर (Roll Number) *</label>
+                    <input type="text" id="roll-no" placeholder="901, 902..." maxlength="5">
                 </div>
                 
-                <div class="input-field">
-                    <label>जन्म तिथि (Enter DOB)</label>
+                <div class="form-group">
+                    <label>जन्म तिथि (Date of Birth) *</label>
                     <input type="text" id="dob" placeholder="DD-MM-YYYY">
-                    <span class="hint">Format: 15-05-2012</span>
+                    <small>उदा: 17-01-2011</small>
                 </div>
 
-                <div class="action-buttons">
-                    <button class="btn-submit" onclick="checkResult()">परिणाम देखें</button>
-                    <button class="btn-reset" onclick="location.reload()">रीसेट करें</button>
+                <div class="btn-group">
+                    <button class="btn-search" onclick="checkResult()">Submit Result</button>
+                    <button class="btn-clear" onclick="location.reload()">Clear</button>
                 </div>
-                <p id="error-msg" class="error-text"></p>
-            </div>
-            
-            <div class="notice">
-                नोट: यदि परिणाम देखने में समस्या हो रही है, तो विद्यालय कार्यालय से संपर्क करें।
+                <p id="error-msg" class="error"></p>
             </div>
         </div>
 
-        <div id="result-card" class="result-display hidden">
-            <div class="result-header">
-                <h3>विद्यार्थी का अंकतालिका (Mark Sheet)</h3>
-                <button class="btn-print-mini" onclick="window.print()">प्रिंट करें</button>
+        <div id="result-card" class="marksheet-container hidden">
+            <div class="marksheet-header">
+                <h3>वार्षिक परीक्षा अंकतालिका (Mark Sheet)</h3>
+                <p>सत्र: 2025-2026</p>
             </div>
             
-            <div class="student-details">
-                <div class="detail-row"><span>विद्यार्थी का नाम:</span> <strong id="res-name"></strong></div>
-                <div class="detail-row"><span>पिता का नाम:</span> <strong id="res-father"></strong></div>
-                <div class="detail-row"><span>रोल नंबर:</span> <strong id="res-roll"></strong></div>
+            <div class="candidate-info">
+                <table class="info-table">
+                    <tr><td>नाम (Name)</td><td id="res-name"></td></tr>
+                    <tr><td>पिता का नाम (Father)</td><td id="res-father"></td></tr>
+                    <tr><td>रोल नंबर (Roll No.)</td><td id="res-roll"></td></tr>
+                </table>
             </div>
 
             <table class="marks-table">
                 <thead>
                     <tr>
                         <th>विषय (Subject)</th>
-                        <th>अधिकतम अंक</th>
-                        <th>प्राप्तांक</th>
+                        <th>पूर्णांक (Max)</th>
+                        <th>प्राप्तांक (Obtained)</th>
                     </tr>
                 </thead>
-                <tbody id="marks-body"></tbody>
+                <tbody id="marks-body">
+                    </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td>कुल योग (Grand Total)</td>
+                        <td>1200</td>
+                        <td id="res-total"></td>
+                    </tr>
+                </tfoot>
             </table>
 
-            <div class="final-summary">
-                <div class="stat"><span>कुल अंक:</span> <b id="res-total"></b></div>
-                <div class="stat"><span>प्रतिशत:</span> <b id="res-percentage"></b></div>
-                <div class="stat"><span>परिणाम:</span> <b id="res-status"></b></div>
-                <div class="stat"><span>रैंक:</span> <b id="res-rank"></b></div>
+            <div class="result-summary">
+                <div class="summary-box">Percentage: <span id="res-percentage"></span></div>
+                <div class="summary-box">Result: <span id="res-status"></span></div>
+                <div class="summary-box">Class Rank: <span id="res-rank"></span></div>
             </div>
 
-            <button class="btn-back" onclick="goBack()">मुख्य पृष्ठ पर जाएं</button>
+            <div class="no-print actions">
+                <button class="btn-back" onclick="goBack()">Back to Login</button>
+                <button class="btn-print" onclick="window.print()">Download Marksheet</button>
+            </div>
         </div>
     </div>
 
-    <footer class="site-footer">
-        <p>© 2026 नवीन एकेडमी चौहटन | Developed by Suresh Jyani</p>
+    <footer class="footer">
+        <p>© नवीन एकेडमी चौहटन | Powered by Alpha Classes & Suresh Jyani</p>
     </footer>
 
     <script src="script.js"></script>
