@@ -1,134 +1,64 @@
-/* General Styles */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #f0f2f5;
-    background: linear-gradient(135deg, #1a237e 0%, #43a047 100%);
-    margin: 0;
-    min-height: 100vh;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Roboto', sans-serif; background-color: #f4f7f9; color: #333; }
 
-/* Navbar */
-.navbar {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 10px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-}
-.nav-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-}
-.nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.nav-logo img { height: 40px; }
-.nav-logo span { font-weight: 600; color: #1a237e; font-size: 1.2rem; }
-.nav-links a {
-    text-decoration: none;
-    color: #333;
-    margin-left: 20px;
-    font-weight: 400;
-    font-size: 0.9rem;
-    transition: 0.3s;
-}
-.nav-links a:hover { color: #43a047; }
+/* Header & Nav */
+.top-bar { height: 5px; background: #ed1c24; }
+.main-header { background: #fff; padding: 20px 0; border-bottom: 1px solid #ddd; }
+.header-content { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; padding: 0 20px; }
+.school-logo { height: 80px; margin-right: 20px; }
+.school-name h1 { font-size: 1.6rem; color: #003366; }
+.school-name p { color: #666; font-weight: 500; }
 
-/* Container & Cards */
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 100px;
-    padding-bottom: 40px;
-}
-.card {
-    background: white;
-    width: 90%;
-    max-width: 450px;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-    text-align: center;
-}
+.sub-nav { background: #003366; }
+.nav-links { max-width: 1000px; margin: 0 auto; display: flex; }
+.nav-links a { color: #fff; text-decoration: none; padding: 12px 20px; font-size: 0.9rem; }
+.nav-links a.active { background: #ed1c24; }
+.nav-links a:hover { background: #004488; }
+
+/* Container */
+.main-container { max-width: 1000px; margin: 40px auto; padding: 0 20px; min-height: 60vh; }
+
+/* Login Box */
+.login-box { background: #fff; border: 1px solid #003366; border-radius: 4px; overflow: hidden; max-width: 500px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.box-title { background: #003366; color: #fff; padding: 12px; font-weight: bold; text-align: center; font-size: 1.1rem; }
+.login-body { padding: 30px; }
+
+.input-field { margin-bottom: 20px; }
+.input-field label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; }
+.input-field input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; }
+.hint { font-size: 0.75rem; color: #888; display: block; margin-top: 4px; }
+
+.action-buttons { display: flex; gap: 10px; margin-top: 25px; }
+.btn-submit { flex: 2; padding: 12px; background: #003366; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.btn-reset { flex: 1; padding: 12px; background: #eee; color: #333; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; }
+.btn-submit:hover { background: #004488; }
+
+.notice { background: #fffde7; padding: 10px; font-size: 0.8rem; border-top: 1px solid #eee; text-align: center; }
+.error-text { color: red; font-size: 0.85rem; margin-top: 10px; text-align: center; }
+
+/* Result Display */
+.result-display { background: #fff; padding: 25px; border: 1px solid #ddd; border-radius: 8px; }
+.result-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #003366; padding-bottom: 10px; margin-bottom: 20px; }
+.student-details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; background: #f9f9f9; padding: 15px; }
+.detail-row { font-size: 0.95rem; }
+.detail-row span { color: #666; margin-right: 5px; }
+
+.marks-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+.marks-table th, .marks-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+.marks-table th { background: #f0f4f8; font-size: 0.9rem; }
+
+.final-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; background: #003366; color: #fff; padding: 15px; border-radius: 4px; }
+.stat { text-align: center; }
+.stat span { display: block; font-size: 0.8rem; opacity: 0.9; }
+.stat b { font-size: 1.1rem; }
+
+.btn-back { margin-top: 20px; padding: 10px 20px; background: #666; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
 .hidden { display: none; }
 
-/* Logo & Headers */
-.logo { width: 90px; margin-bottom: 10px; }
-.logo-small { width: 45px; }
-h2 { color: #1a237e; font-size: 1.4rem; margin: 0; }
-.card-header p { color: #666; margin: 5px 0 15px 0; font-size: 0.9rem; }
+.site-footer { text-align: center; padding: 20px; color: #777; font-size: 0.8rem; }
 
-.portal-badge {
-    background: #e8f5e9;
-    color: #2e7d32;
-    padding: 8px;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 25px;
-    border: 1px solid #c8e6c9;
-}
-
-/* Inputs */
-.input-group { text-align: left; margin-top: 15px; }
-label { display: block; font-weight: 600; margin-bottom: 8px; color: #333; font-size: 0.9rem; }
-input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #eee;
-    border-radius: 10px;
-    box-sizing: border-box;
-    font-family: inherit;
-    transition: 0.3s;
-}
-input:focus { border-color: #1a237e; outline: none; background: #f8f9ff; }
-small { color: #888; font-size: 0.75rem; }
-
-/* Buttons */
-button {
-    width: 100%;
-    padding: 14px;
-    background: #1a237e;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 25px;
-    transition: 0.4s;
-}
-button:hover { background: #0d47a1; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(26,35,126,0.3); }
-
-.btn-back { background: #f44336; margin-top: 10px; }
-.btn-print { background: #4caf50; margin-top: 10px; }
-
-/* Error & Footer */
-.error { color: #d32f2f; font-size: 0.85rem; margin-top: 15px; font-weight: 500; }
-.card-footer { margin-top: 30px; border-top: 1px solid #eee; padding-top: 15px; }
-.card-footer p { font-size: 0.7rem; color: #999; }
-
-/* Result Table Styles */
-.result-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-.result-table th, .result-table td { border: 1px solid #eee; padding: 12px; text-align: left; font-size: 0.9rem; }
-.result-table th { background: #f8f9ff; color: #1a237e; }
-.student-info { text-align: left; background: #f9f9f9; padding: 15px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #1a237e; }
-.student-info p { margin: 5px 0; font-size: 0.9rem; }
-.summary { background: #fffde7; border: 1px dashed #fbc02d; padding: 15px; border-radius: 12px; text-align: left; }
-
-/* Print Logic */
 @media print {
-    body { background: white; }
-    .navbar, .no-print, #view-result-btn, .btn-back, .btn-print { display: none !important; }
-    .container { padding-top: 0; }
-    .card { box-shadow: none; border: 1px solid #eee; max-width: 100%; }
+    .main-header, .sub-nav, .action-buttons, .btn-back, .btn-print-mini, .site-footer, .notice { display: none !important; }
+    .main-container { margin: 0; padding: 0; }
+    .result-display { border: none; }
 }
