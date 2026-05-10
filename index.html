@@ -56,7 +56,7 @@
         /* --- Layout Container --- */
         .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
 
-        /* --- Leadership Section (Director & Principal) --- */
+        /* --- Leadership Section --- */
         .leadership-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -99,12 +99,13 @@
 
         .input-group { text-align: left; margin-bottom: 25px; }
         .input-group label { display: block; margin-bottom: 8px; font-weight: 700; color: var(--primary-blue); font-size: 0.9rem; }
-        .input-group input {
+        .input-group input, .input-group select {
             width: 100%; padding: 16px;
             background: white; border: 2px solid #e0f2fe;
             border-radius: 14px; font-size: 1rem; outline: none;
+            font-family: inherit;
         }
-        .input-group input:focus { border-color: var(--secondary-green); }
+        .input-group input:focus, .input-group select:focus { border-color: var(--secondary-green); }
 
         .btn-submit {
             width: 100%; padding: 18px;
@@ -187,16 +188,21 @@
 
         <div id="login-box" class="login-card">
             <img src="https://suryajani28-cejdx.wordpress.com/wp-content/uploads/2026/03/1773751463864.png" class="nvs-star">
-            <h2 style="margin-bottom: 25px; color: #1e293b;">Student Portal(Result 2025-26)</h2>
+            <h2 style="margin-bottom: 25px; color: #1e293b;">Student Portal (First Test 2026)</h2>
             
             <div class="input-group">
-                <label>Roll Number</label>
-                <input type="number" id="roll-no" placeholder="Enter Roll Number">
+                <label>Select Class</label>
+                <select id="class-select">
+                    <option value="9">Class 9th</option>
+                    <option value="10">Class 10th</option>
+                    <option value="11">Class 11th</option>
+                    <option value="12">Class 12th</option>
+                </select>
             </div>
 
             <div class="input-group">
-                <label>Date of Birth</label>
-                <input type="text" id="dob" placeholder="DD-MM-YYYY">
+                <label>Student Name</label>
+                <input type="text" id="stu-name" placeholder="Enter Full Name (e.g. DEU KHAN)">
             </div>
 
             <button class="btn-submit" onclick="showResult()">View Result</button>
@@ -205,15 +211,15 @@
 
         <div id="result-box" class="result-box">
             <div class="result-head">
-                <h2>ANNUAL REPORT CARD 2026</h2>
+                <h2 id="res-title">FIRST TEST MARKSHEET 2026</h2>
             </div>
             <div style="padding: 20px 40px; display: flex; justify-content: space-between; border-bottom: 1px solid #eee;">
                 <span>Name: <b id="res-name"></b></span>
-                <span>Roll No: <b id="res-roll"></b></span>
+                <span>Class: <b id="res-class"></b></span>
             </div>
             <table class="marks-table">
                 <thead>
-                    <tr><th>Subject</th><th>Max</th><th>Obtained</th></tr>
+                    <tr><th>Subject</th><th>Max Marks</th><th>Obtained</th></tr>
                 </thead>
                 <tbody id="marks-body"></tbody>
             </table>
@@ -241,23 +247,24 @@
     </footer>
 
     <script>
-        let students = [];
+        let db = {};
         async function load() {
             try {
                 const r = await fetch(`results.json?v=${Date.now()}`);
-                const j = await r.json();
-                students = j.map(s => {
-                    const t = parseInt(s.hindi)+parseInt(s.english)+parseInt(s.sanskrit)+parseInt(s.math)+parseInt(s.science)+parseInt(s.social_science);
-                    return { ...s, total: t, perc: (t/1200*100).toFixed(2)+"%" };
-                });
-                students.sort((a,b)=>b.total-a.total).forEach((s,i)=>s.rank=i+1);
+                db = await r.json(); 
             } catch(e) { console.log("Load error"); }
         }
 
         function showResult() {
-            const roll = document.getElementById('roll-no').value;
-            const dob = document.getElementById('dob').value;
-            const s = students.find(x => x.roll_no == roll && x.dob == dob);
+            const cls = document.getElementById('class-select').value;
+            const nameInput = document.getElementById('stu-name').value.trim().toUpperCase();
+            
+            if(!db["class_" + cls]) {
+                document.getElementById('err').innerText = "Data not available for this class!";
+                return;
+            }
+
+            const s = db["class_" + cls].find(x => x.n === nameInput);
 
             if(s) {
                 document.getElementById('login-box').style.display = 'none';
@@ -265,22 +272,24 @@
                 document.getElementById('gallery-box').style.display = 'none';
                 document.getElementById('result-box').style.display = 'block';
 
-                document.getElementById('res-name').innerText = s.name;
-                document.getElementById('res-roll').innerText = s.roll_no;
-                document.getElementById('res-total').innerText = s.total + "/1200";
-                document.getElementById('res-perc').innerText = s.perc;
-                document.getElementById('res-rank').innerText = "#" + s.rank;
+                document.getElementById('res-name').innerText = s.n;
+                document.getElementById('res-class').innerText = cls + "th";
+                document.getElementById('res-total').innerText = s.t + "/60";
+                
+                let p = ((parseInt(s.t)/60)*100).toFixed(2) + "%";
+                document.getElementById('res-perc').innerText = p;
+                document.getElementById('res-rank').innerText = "#" + s.r;
 
                 document.getElementById('marks-body').innerHTML = `
-                    <tr><td>Hindi</td><td>200</td><td>${s.hindi}</td></tr>
-                    <tr><td>English</td><td>200</td><td>${s.english}</td></tr>
-                    <tr><td>Sanskrit</td><td>200</td><td>${s.sanskrit}</td></tr>
-                    <tr><td>Maths</td><td>200</td><td>${s.math}</td></tr>
-                    <tr><td>Science</td><td>200</td><td>${s.science}</td></tr>
-                    <tr><td>Social Science</td><td>200</td><td>${s.social_science}</td></tr>
+                    <tr><td>Hindi</td><td>10</td><td>${s.h}</td></tr>
+                    <tr><td>English</td><td>10</td><td>${s.e}</td></tr>
+                    <tr><td>Mathematics</td><td>10</td><td>${s.m}</td></tr>
+                    <tr><td>Science</td><td>10</td><td>${s.sc}</td></tr>
+                    <tr><td>Social Science</td><td>10</td><td>${s.ss}</td></tr>
+                    <tr><td>Sanskrit</td><td>10</td><td>${s.sk}</td></tr>
                 `;
             } else {
-                document.getElementById('err').innerText = "Incorrect Details!";
+                document.getElementById('err').innerText = "Name not found in this class!";
             }
         }
         load();
