@@ -272,20 +272,22 @@
                 let maxTotal = 60;
 
                 if(cls == "11" || cls == "12") {
-                    maxTotal = 50; // Only 5 subjects
+                    maxTotal = 50; 
                     marksHTML += `<tr><td>Hindi</td><td>10</td><td>${s.h}</td></tr>`;
                     marksHTML += `<tr><td>English</td><td>10</td><td>${s.e}</td></tr>`;
                     marksHTML += `<tr><td>Physics</td><td>10</td><td>${s.p}</td></tr>`;
                     marksHTML += `<tr><td>Chemistry</td><td>10</td><td>${s.c}</td></tr>`;
                     
-                    // Logic for Math or Bio
-                    if(s.m && s.m !== "A" && s.m !== "") {
+                    // Logic updated only here: Check Biology first, then Math
+                    if(s.b && parseInt(s.b) > 0) {
+                        marksHTML += `<tr><td>Biology</td><td>10</td><td>${s.b}</td></tr>`;
+                    } else if(s.m && parseInt(s.m) > 0) {
                         marksHTML += `<tr><td>Mathematics</td><td>10</td><td>${s.m}</td></tr>`;
                     } else {
-                        marksHTML += `<tr><td>Biology</td><td>10</td><td>${s.b || 'A'}</td></tr>`;
+                        marksHTML += `<tr><td>Mathematics</td><td>10</td><td>${s.m || '0'}</td></tr>`;
                     }
                 } else {
-                    maxTotal = 60; // 6 subjects for 9th/10th
+                    maxTotal = 60; 
                     marksHTML = `
                         <tr><td>Hindi</td><td>10</td><td>${s.h}</td></tr>
                         <tr><td>English</td><td>10</td><td>${s.e}</td></tr>
